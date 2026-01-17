@@ -54,30 +54,49 @@ window.addEventListener("scroll", () => {
 // Hamburger Menu
 const hamburger = document.querySelector(".hamburger");
 const navLinks = document.querySelector(".nav-links");
-const links = document.querySelectorAll(".nav-links li a");
+const links = document.querySelectorAll(".nav-links a");
 const logoLink = document.querySelector(".logo").parentElement;
 
 const closeMenu = () => {
   navLinks.classList.remove("active");
-  const icon = hamburger.querySelector("i");
-  icon.classList.remove("fa-xmark");
-  icon.classList.add("fa-bars");
+  hamburger.classList.remove("active");
+
+  // Close any open mobile dropdowns
+  document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
 };
 
 hamburger.addEventListener("click", () => {
   navLinks.classList.toggle("active");
-  const icon = hamburger.querySelector("i");
-  if (navLinks.classList.contains("active")) {
-    icon.classList.remove("fa-bars");
-    icon.classList.add("fa-xmark");
-  } else {
-    icon.classList.remove("fa-xmark");
-    icon.classList.add("fa-bars");
+  hamburger.classList.toggle("active");
+
+  if (!navLinks.classList.contains("active")) {
+    document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
+  }
+});
+
+// Mobile Dropdown Toggle
+const dropdownTrigger = document.querySelector(".dropdown-trigger");
+dropdownTrigger.addEventListener("click", (e) => {
+  if (window.innerWidth <= 768) {
+    e.preventDefault();
+    dropdownTrigger.parentElement.classList.toggle("active");
+  }
+});
+
+// Close menu on resize if switching to desktop
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 768) {
+    closeMenu();
   }
 });
 
 // Smooth scroll and close menu when a link is clicked
 const handleNavLinkClick = (e, link) => {
+  const isMobile = window.innerWidth <= 768;
+  const isDropdownTrigger = link.classList.contains("dropdown-trigger");
+
+  if (isMobile && isDropdownTrigger) return;
+
   e.preventDefault();
   const targetId = link.getAttribute("href");
   if (!targetId || targetId === "#") return;
@@ -121,7 +140,7 @@ const observer = new IntersectionObserver((entries) => {
 // Initialize animations
 const initAnimations = () => {
   const elementsToAnimate = document.querySelectorAll(
-    ".hero-text, .hero-image, .socials, .about-image, .about-text, .project-card, .timeline-item, .contact-content, .projects h1, .about h1, .skills h1, .experience h1, .contact h1, .skills-wrapper"
+    ".hero-text, .hero-image, .socials, .about-image, .about-text, .project-card, .timeline-item, .contact-content, .projects h1, .about h1, .skills h1, .experience h1, .certificates h1, .contact h1, .skills-wrapper, .cert-card"
   );
 
   elementsToAnimate.forEach((el) => {
@@ -138,6 +157,11 @@ const initAnimations = () => {
   const timelineItems = document.querySelectorAll('.timeline-item');
   timelineItems.forEach((item, index) => {
     item.style.transitionDelay = `${index * 200}ms`;
+  });
+
+  const certCards = document.querySelectorAll('.cert-card');
+  certCards.forEach((card, index) => {
+    card.style.transitionDelay = `${index * 150}ms`;
   });
 };
 

@@ -6,22 +6,22 @@
   font-weight: 400;
 }
 
+html,
 body {
-  background-color: #0c0c08;
-}
-
-html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  width: 100%;
+  background-color: #0c0c08;
 }
 
 nav {
   width: 100%;
   background-color: #0c0c08;
-  padding: 1rem 8%;
+  padding: 1.2rem 8%;
   color: white;
   z-index: 1000;
-  transition: background-color 0.3s ease;
-  box-shadow: 0 1px 1px rgba(59, 59, 59, 0.3);
+  transition: all 0.3s ease;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -29,9 +29,9 @@ nav {
 }
 
 .logo {
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   font-weight: 600;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
 }
 
 .navbar a {
@@ -46,19 +46,74 @@ nav {
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 2rem;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.nav-links li {
+  position: relative;
 }
 
 .nav-links li a {
   text-decoration: none;
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 500;
-  color: white;
-  transition: color 0.3s ease, border-bottom 0.3s ease;
+  color: rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .nav-links li a:hover {
   color: #ca3537;
+}
+
+.nav-links li a i {
+  font-size: 0.7rem;
+  transition: transform 0.3s ease;
+}
+
+/* Dropdown Styles */
+.dropdown-content {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background: rgba(20, 20, 20, 0.95);
+  backdrop-filter: blur(15px);
+  min-width: 180px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 10px 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  list-style: none;
+  z-index: 1100;
+}
+
+.dropdown:hover .dropdown-content {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.dropdown:hover .dropdown-trigger i {
+  transform: rotate(180deg);
+}
+
+.dropdown-content li a {
+  padding: 12px 20px;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  display: block;
+}
+
+.dropdown-content li a:hover {
+  background: rgba(202, 53, 55, 0.1);
+  color: #fff;
 }
 
 .btn {
@@ -189,29 +244,44 @@ nav {
   display: flex;
   align-items: center;
   gap: 15px;
-  background-color: #1a1a1a;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(8px);
   color: white;
-  padding: 20px 30px;
-  border-radius: 15px;
-  transition: transform 0.3s ease, background 0.3s ease;
+  padding: 20px 25px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   cursor: pointer;
   min-width: 200px;
   text-decoration: none;
 }
 
 .social-card:hover {
-  transform: translateY(-3px);
-  background-color: #292929;
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(202, 53, 55, 0.4);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 }
 
 .social-card i {
   font-size: 35px;
   color: #ffffff88;
+  transition: all 0.3s ease;
+}
+
+.social-card:hover i {
+  color: #ca3537;
+  text-shadow: 0 0 15px rgba(202, 53, 55, 0.5);
 }
 
 .social-card h3 {
   font-size: 1.2rem;
   margin: 0;
+  transition: color 0.3s ease;
+}
+
+.social-card:hover h3 {
+  color: #fff;
 }
 
 .social-card p {
@@ -226,6 +296,7 @@ nav {
   padding: 80px 8%;
   text-align: center;
   position: relative;
+  overflow: hidden;
 }
 
 .skills h1 {
@@ -250,10 +321,11 @@ nav {
   display: flex;
   overflow-x: auto;
   gap: 25px;
-  padding: 10px;
+  padding: 20px 0;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  /* optional */
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
 }
 
 .skills-container::-webkit-scrollbar {
@@ -263,18 +335,21 @@ nav {
 /* Skill Card */
 .skill-card {
   flex: 0 0 280px;
-  background: #1a1a1a;
-  border: 1px solid #262626;
-  border-radius: 12px;
-  padding: 25px;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 30px;
   text-align: left;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  scroll-snap-align: center;
 }
 
 .skill-card:hover {
-  transform: translateY(-5px);
-  border-color: #ca3537;
-  box-shadow: 0 0 20px rgba(202, 53, 55, 0.3);
+  transform: translateY(-8px);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(202, 53, 55, 0.4);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
 }
 
 .skill-card i {
@@ -285,13 +360,33 @@ nav {
 
 .skill-card h3 {
   font-size: 1.2rem;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
+  font-weight: 600;
 }
 
-.skill-card p {
-  color: #ccc;
-  font-size: 0.9rem;
-  line-height: 1.5;
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.skill-tags span {
+  font-size: 0.75rem;
+  padding: 5px 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 50px;
+  color: #aaa;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.skill-card:hover .skill-tags span {
+  border-color: rgba(202, 53, 55, 0.4);
+  color: #fff;
+  background: rgba(202, 53, 55, 0.05);
+  box-shadow: 0 0 10px rgba(202, 53, 55, 0.1);
 }
 
 /* Arrow Buttons */
@@ -383,8 +478,56 @@ nav {
 
 .hamburger {
   display: none;
-  font-size: 1.5rem;
   cursor: pointer;
+  width: 30px;
+  height: 20px;
+  position: relative;
+  z-index: 1001;
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.hamburger span {
+  display: block;
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  background: white;
+  border-radius: 2px;
+  opacity: 1;
+  left: 0;
+  transform: rotate(0deg);
+  transition: .25s ease-in-out;
+}
+
+.hamburger span:nth-child(1) {
+  top: 0px;
+}
+
+.hamburger span:nth-child(2) {
+  top: 9px;
+}
+
+.hamburger span:nth-child(3) {
+  top: 18px;
+}
+
+.hamburger.active span:nth-child(1) {
+  top: 9px;
+  transform: rotate(135deg);
+  background: #ca3537;
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+  left: -40px;
+}
+
+.hamburger.active span:nth-child(3) {
+  top: 9px;
+  transform: rotate(-135deg);
+  background: #ca3537;
 }
 
 .about {
@@ -448,35 +591,103 @@ nav {
   margin-bottom: 15px;
 }
 
-/* Mobile */
+/* Mobile Navigation Redesign */
 @media (max-width: 768px) {
   .nav-links {
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: -400px;
-    /* Hidden by default above the navbar */
+    top: 100%;
     left: 0;
     width: 100%;
-    background-color: #0c0c08;
-    padding: 20px 0;
-    gap: 15px;
+    background-color: rgba(12, 12, 8, 0.98);
+    backdrop-filter: blur(15px);
+    padding: 1.5rem 0;
+    gap: 0.5rem;
     text-align: center;
     z-index: 999;
-    transition: all 0.4s ease-in-out;
+    transform: translateY(-100%);
     opacity: 0;
     visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    pointer-events: none;
   }
 
   .nav-links.active {
-    top: 70px;
+    transform: translateY(0);
     opacity: 1;
     visibility: visible;
+    pointer-events: auto;
+  }
+
+  .nav-links li a {
+    padding: 12px 0;
+    font-size: 1.05rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+  }
+
+  /* Reset dropdown trigger padding - specific to text centering */
+  .dropdown-trigger {
+    padding-right: 0;
+  }
+
+  .dropdown-content {
+    position: static;
+    transform: none;
+    background: rgba(255, 255, 255, 0.04);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: none;
+    opacity: 0;
+    visibility: hidden;
+    max-height: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 0;
+    margin: 5px 0;
+  }
+
+  .dropdown-content li {
+    width: 100%;
+  }
+
+  .dropdown-content li a {
+    padding: 12px 0;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+
+  .dropdown.active .dropdown-content {
+    opacity: 1;
+    visibility: visible;
+    max-height: 300px;
+    padding: 8px 0;
+  }
+
+  .dropdown.active .dropdown-trigger i {
+    transform: rotate(180deg);
+  }
+
+  .dropdown-trigger i {
+    display: inline-block;
+    transition: transform 0.3s ease;
+    font-size: 0.6rem;
+    margin-left: 5px;
   }
 
   .hamburger {
-    display: block;
-    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 }
 
@@ -497,24 +708,39 @@ nav {
   .hero-image {
     margin-top: 30px;
   }
+
+  .image-bg {
+    width: 260px;
+    height: 260px;
+  }
 }
 
 /* Skills section */
 @media (max-width: 768px) {
+  .skills-wrapper {
+    max-width: 100%;
+  }
+
   .skills-container {
     display: flex;
-    /* make it flex, not grid */
-    overflow: hidden;
-    /* hide extra cards */
-    gap: 0;
-    /* no gap */
-    padding: 0;
-    /* remove padding so 1 card fits */
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 15px;
+    padding: 20px 0;
   }
 
   .skill-card {
-    flex: 0 0 100%;
-    /* each card fills full container */
+    flex: 0 0 85%;
+    scroll-snap-align: center;
+    background: rgba(26, 26, 26, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 30px;
+  }
+
+  .arrow-btn {
+    display: none;
+    /* Hide arrows on mobile for cleaner look */
   }
 }
 
@@ -528,8 +754,45 @@ nav {
 /* Socials */
 @media (max-width: 768px) {
   .socials {
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 15px;
+    padding: 0 4%;
+    margin-bottom: 3.5rem;
+  }
+
+  /* Make the first social card (GitHub) span full width for emphasis */
+  .social-card:nth-child(1) {
+    grid-column: span 2;
+    padding: 25px;
+  }
+
+  .social-card {
+    min-width: 0;
+    /* Allow grid to shrink cards */
+    padding: 15px;
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .social-card i {
+    font-size: 28px;
+  }
+
+  .social-card h3 {
+    font-size: 1rem;
+  }
+
+  .social-card p {
+    font-size: 0.8rem;
+    display: none;
+    /* Hide descriptions on smaller grid cards to keep it clean */
+  }
+
+  .social-card:nth-child(1) p {
+    display: block;
+    /* Keep description for the main GitHub card */
   }
 }
 
@@ -556,6 +819,7 @@ nav {
   color: white;
   padding: 80px 8%;
   text-align: center;
+  overflow: hidden;
 }
 
 .projects h1 {
@@ -837,6 +1101,10 @@ nav.sticky {
   .excerpt-row {
     gap: 3rem;
   }
+
+  .excerpt-col {
+    flex: 1 1 100%;
+  }
 }
 
 /* Contact Section */
@@ -910,6 +1178,8 @@ nav.sticky {
 .social-links-minimal {
   display: flex;
   gap: 2.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .social-links-minimal a {
@@ -1012,6 +1282,123 @@ nav.sticky {
   position: absolute;
   left: 0;
   top: 0;
+}
+
+/* Certificates Section */
+.certificates {
+  padding: 80px 8%;
+  background-color: #0c0c08;
+  text-align: center;
+}
+
+.certificates h1 {
+  font-size: 2.5rem;
+  margin-bottom: 50px;
+  color: #fff;
+}
+
+.certificates span {
+  color: #ca3537;
+}
+
+.certificates-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+  justify-content: center;
+}
+
+.cert-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  text-align: left;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+}
+
+.cert-card:hover {
+  transform: translateY(-10px);
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(202, 53, 55, 0.5);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+.cert-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(202, 53, 55, 0.1) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.cert-card:hover::after {
+  opacity: 1;
+}
+
+.cert-icon {
+  width: 60px;
+  height: 60px;
+  background: rgba(202, 53, 55, 0.1);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.cert-card:hover .cert-icon {
+  background: #ca3537;
+  transform: rotate(-10deg) scale(1.1);
+}
+
+.cert-icon i {
+  font-size: 1.5rem;
+  color: #ca3537;
+  transition: all 0.3s ease;
+}
+
+.cert-card:hover .cert-icon i {
+  color: #fff;
+}
+
+.cert-info h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 5px;
+}
+
+.cert-info p {
+  font-size: 0.9rem;
+  color: #aaa;
+  line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+  .certificates {
+    padding: 60px 5%;
+  }
+
+  .certificates-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cert-card {
+    padding: 20px;
+  }
 }
 
 /* Footer Section */

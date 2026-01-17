@@ -19,14 +19,22 @@
     </a>
 
     <div class="hamburger">
-      <i class="fa-solid fa-bars"></i>
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
 
     <ul class="nav-links">
       <li><a href="#home">Home</a></li>
       <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#projects">Projects</a></li>
+      <li class="dropdown">
+        <a href="#projects" class="dropdown-trigger">Portfolio <i class="fa-solid fa-chevron-down"></i></a>
+        <ul class="dropdown-content">
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#certificates">Certificates</a></li>
+        </ul>
+      </li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
@@ -119,43 +127,66 @@
       <div class="skills-container" id="skillsContainer">
         <div class="skill-card">
           <i class="fa-solid fa-code"></i>
-          <h3>Frontend Development</h3>
-          <p>HTML5, CSS3, JavaScript</p>
+          <h3>Frontend</h3>
+          <div class="skill-tags">
+            <span>HTML5</span>
+            <span>CSS3</span>
+            <span>JavaScript</span>
+          </div>
         </div>
 
         <div class="skill-card">
           <i class="fa-solid fa-database"></i>
-          <h3>Backend Development</h3>
-          <p>
-            PHP, Laravel, Java, C/C++, Python, Express.js, Node.js, MySQL,
-            REST API
-          </p>
+          <h3>Backend</h3>
+          <div class="skill-tags">
+            <span>PHP</span>
+            <span>Laravel</span>
+            <span>Java</span>
+            <span>C++</span>
+            <span>Python</span>
+            <span>Node.js</span>
+            <span>MySQL</span>
+            <span>REST API</span>
+          </div>
         </div>
 
         <div class="skill-card">
           <i class="fa-solid fa-lock"></i>
           <h3>Security</h3>
-          <p>AES</p>
+          <div class="skill-tags">
+            <span>AES Encryption</span>
+          </div>
         </div>
 
         <div class="skill-card">
           <i class="fa-solid fa-toolbox"></i>
-          <h3>Developer Tools</h3>
-          <p>
-            Git, GitHub, Visual Studio Code
-          </p>
+          <h3>Dev Tools</h3>
+          <div class="skill-tags">
+            <span>Git</span>
+            <span>GitHub</span>
+            <span>VS Code</span>
+          </div>
         </div>
 
         <div class="skill-card">
           <i class="fa-solid fa-palette"></i>
-          <h3>Media & Design</h3>
-          <p>Figma, Adobe Photoshop, Adobe Premiere Pro, Canva</p>
+          <h3>Design</h3>
+          <div class="skill-tags">
+            <span>Figma</span>
+            <span>Photoshop</span>
+            <span>Premiere Pro</span>
+            <span>Canva</span>
+          </div>
         </div>
 
         <div class="skill-card">
           <i class="fa-solid fa-file-word"></i>
-          <h3>Office Applications</h3>
-          <p>Word, PowerPoint, Excel</p>
+          <h3>Office</h3>
+          <div class="skill-tags">
+            <span>Word</span>
+            <span>PowerPoint</span>
+            <span>Excel</span>
+          </div>
         </div>
       </div>
 
@@ -315,6 +346,67 @@
           </div>
 
 
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="certificates" id="certificates">
+    <h1>Certificates & <span>Recognition</span></h1>
+    <div class="certificates-grid">
+      <div class="cert-card">
+        <div class="cert-icon"><i class="fa-solid fa-award"></i></div>
+        <div class="cert-info">
+          <h3>Graduated with Honors</h3>
+          <p>Junior High School</p>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-icon"><i class="fa-solid fa-medal"></i></div>
+        <div class="cert-info">
+          <h3>Graduated with Honors</h3>
+          <p>Senior High School</p>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-icon"><i class="fa-solid fa-star"></i></div>
+        <div class="cert-info">
+          <h3>Outstanding Performance</h3>
+          <p>Information and Communication Technology</p>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-icon"><i class="fa-solid fa-laptop-code"></i></div>
+        <div class="cert-info">
+          <h3>National Certificate II</h3>
+          <p>Computer System Servicing</p>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-icon"><i class="fa-solid fa-trophy"></i></div>
+        <div class="cert-info">
+          <h3>Champion</h3>
+          <p>MU Programming Competition – ICT Week 2023</p>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-icon"><i class="fa-solid fa-trophy"></i></div>
+        <div class="cert-info">
+          <h3>Champion</h3>
+          <p>MU Advance Programming Competition – ICT Week 2024</p>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-icon"><i class="fa-solid fa-file-contract"></i></div>
+        <div class="cert-info">
+          <h3>Certificate of Completion</h3>
+          <p>Information System Internship</p>
         </div>
       </div>
     </div>
