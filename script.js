@@ -140,7 +140,7 @@ const observer = new IntersectionObserver((entries) => {
 // Initialize animations
 const initAnimations = () => {
   const elementsToAnimate = document.querySelectorAll(
-    ".hero-text, .hero-image, .socials, .about-image, .about-text, .project-card, .timeline-item, .contact-content, .projects h1, .about h1, .skills h1, .experience h1, .certificates h1, .contact h1, .skills-wrapper, .cert-card"
+    ".hero-text, .hero-image, .hero-buttons, .socials, .about-image, .about-text, .project-card, .timeline-item, .contact-content, .projects h1, .about h1, .skills h1, .experience h1, .certificates h1, .contact h1, .skills-wrapper, .cert-card"
   );
 
   elementsToAnimate.forEach((el) => {
@@ -165,9 +165,48 @@ const initAnimations = () => {
   });
 };
 
+// Typing Effect
+const roleElement = document.querySelector(".role");
+const roles = ["Aspiring Software Engineer", "Freelance Software Developer", "Freelance Web Developer"];
+let roleIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+let typeSpeed = 100;
+
+const typeEffect = () => {
+  if (!roleElement) return;
+
+  const currentRole = roles[roleIndex];
+
+  if (isDeleting) {
+    roleElement.textContent = currentRole.substring(0, charIndex--);
+    typeSpeed = 25; // Fast delete
+  } else {
+    roleElement.textContent = currentRole.substring(0, charIndex++);
+    typeSpeed = 25;
+  }
+
+  if (!isDeleting && charIndex === currentRole.length + 1) {
+    isDeleting = true;
+    typeSpeed = 2000; // Pause at end
+    charIndex = currentRole.length - 1; // Force visual delete on next frame
+  } else if (isDeleting && charIndex === -1) {
+    isDeleting = false;
+    roleIndex = (roleIndex + 1) % roles.length;
+    typeSpeed = 200; // Pause before typing next
+    charIndex = 0;
+  }
+
+  setTimeout(typeEffect, typeSpeed);
+};
+
 // Run initialization
 if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", initAnimations);
+  document.addEventListener("DOMContentLoaded", () => {
+    initAnimations();
+    typeEffect();
+  });
 } else {
   initAnimations();
+  typeEffect();
 }
